@@ -13,7 +13,7 @@ hidden states.
 I used [global attention](https://nlp.stanford.edu/pubs/emnlp15_attn.pdf) for this. 
 
 In this model,
-at each time step of the encoder, a 'candidate hidden state' is created by the standard RNN method, but withe elu activation.
+at each time step of the encoder, a 'candidate hidden state' is created by the standard RNN method, but with elu activation.
 candidate_hidden = elu(input * wxh + previous_hidden_state * whh + Bias)
 
 At this point, all the previous hidden states are considered as analogous to the encoder hidden states for the layerwise-attention, and the candidate_hidden_state is considered as analogous to the current decoder hidden state for the layerwise attention. 
