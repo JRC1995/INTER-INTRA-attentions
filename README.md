@@ -1,20 +1,25 @@
 # Attention-Everywhere
+
 This is a similar seq-2-seq model as [this](https://github.com/JRC1995/Abstractive-Summarization) ,used on [Amazon-Fine-Food-Dataset](https://www.kaggle.com/snap/amazon-fine-food-reviews/data) for abstractive summarization
 (and should be usable on translation data for machine translation). 
 
 The main difference is in the encoder and decoder units. This model is inspired from the idea of [recurrent residual attention](https://arxiv.org/abs/1709.03714). 
 
-The RRA model adds with the standard recurrent network function, a weighted summation of K previous hidden states. 
-However, unlike the standard attention, where the attention weights are computed from the context by a scoring function, here (in the RRA model), the weights are randomly initialized.
+The RRA model adds a weighted summation of K previous hidden states with the standard recurrent function. 
+However, unlike the standard attention where the attention weights are computed from the context by a scoring function, here (in the RRA model), the weights are randomly initialized.
 
 So, I implemented the same standard layer-wise attention mechanism function to calculate the attention weights for previous
-hidden states.
+hidden states. This can be said to be <b>intra-layer attention</b>.
 
-I used [global attention](https://nlp.stanford.edu/pubs/emnlp15_attn.pdf) for this. 
+Note: There may have been previous works on intra-layer-attention, but I didn't refer to any such work while making this implementation.
 
-In this model,
-at each time step of the encoder, a 'candidate hidden state' is created by the standard RNN method, but with elu activation.
-candidate_hidden = elu(input * wxh + previous_hidden_state * whh + Bias)
+# Intra-layer-attention for Encoder
+
+I used [global attention](https://nlp.stanford.edu/pubs/emnlp15_attn.pdf) for the basic attention mechanism. 
+
+At each time step of the encoder, a <i>candidate hidden state</i> is created by the standard RNN method (but with elu activation).
+
+>candidate_hidden = elu(input * wxh + previous_hidden_state * whh + Bias)
 
 At this point, all the previous hidden states are considered as analogous to the encoder hidden states for the layerwise-attention, and the candidate_hidden_state is considered as analogous to the current decoder hidden state for the layerwise attention. 
 
