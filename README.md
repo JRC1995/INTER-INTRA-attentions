@@ -93,6 +93,7 @@ Example output:
 >loss=10.4148
 
 Nothing to expect here. This is just the result of the 3rd iteration (i.e trained only on 3 data pairs).
-I haven't run this model for more than a couple of iterations. 
+I haven't run this model for more than a couple of iterations.  
 
+I haven't used any evaluation metric (like BLEU) either, because there's not much point in evaluating these low quality predictions. These are on my TO-DO list if I later find oppurtunity for proper training and testing.
 
