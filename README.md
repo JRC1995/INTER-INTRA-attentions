@@ -97,3 +97,5 @@ I haven't run this model for more than a couple of iterations.
 
 I haven't used any evaluation metric (like BLEU) either, because there's not much point in evaluating these low quality predictions. These are on my TO-DO list if I later find oppurtunity for proper training and testing.
 
+Interesting paper to try out later: https://arxiv.org/pdf/1705.04304.pdf
+
