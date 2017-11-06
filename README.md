@@ -1,4 +1,4 @@
-# Intra-Layer Attention along with Inter-Layer Attention
+# Intra-Layer Attention + Inter-Layer Attention + seq2seq
 
 This is a similar seq-2-seq model as [this](https://github.com/JRC1995/Abstractive-Summarization) ,used on [Amazon-Fine-Food-Dataset](https://www.kaggle.com/snap/amazon-fine-food-reviews/data) for abstractive summarization
 (and should be usable on translation data for machine translation). 
