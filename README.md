@@ -33,10 +33,7 @@ In this context, ht will be the current candidate hidden state, and hs will be t
 
 Similar to the standard inter-layer global attention mechanism, a context vector is created as a result of the weighted summation of all the previous hidden states, and then an 'attended hidden state' is created by taking both the context vector and the candidate hidden state into account (following the formula for creating ht_dash as given in [here](https://nlp.stanford.edu/pubs/emnlp15_attn.pdf))
 
-Next, I used the new attended hidden state as the 'previous' hidden state for the current time step to calculate
-the current hidden state.
-
->hidden_state = elu(input * wxh + attended_hidden_state * whh + Bias)
+This intra-decoder-layer attended hidden state is considered as the final hidden state for that timestep. 
 
 Finally, we store the computed hidden state in the list of previous hidden states for computing the next hidden state in the next time step.
 
@@ -44,27 +41,23 @@ Finally, we store the computed hidden state in the list of previous hidden state
 
 # Intra-layer-attention for Decoder
 
-I used a similar process for the decoder.
-First, the layer wise(or better 'inter-layer') attention mechanism calculates the inter-layer attended hidden state by the standard process of global-attention.
+At each time step of the decoder, a <i>candidate hidden state</i> is created by the standard RNN method (but with elu activation).
 
-From the inter-layer attended hidden state the output token is computed.
-Next, the 'intra-layer' attention mechanism starts its job: 
+>candidate_hidden = elu(input * wxh + previous_hidden_state * whh + Bias)
 
-first it computes the candidate hidden state from the 
-inter-layer attended hidden state AND the computed output token using the standard RNN formula as used in the encoder.
+The initial decoder hidden state is the first bi-directional encoder hidden state and the initial input for the decoder is a word vector representing <SOS> - start of sentence for decoder. 
 
->candidate_hidden = elu(output * wxh + inter_layer_attended_hidden_state * whh + Bias)
+The previous decoder hidden states are scored in context of the current candidate hidden satte using a similar attention scoring function. With the weighted (wieghts = scores) summation of the previous decoder hidden states, the decoder intra-layer context vector is created. 
 
-Second, similar to the encoders, it computes the intra-layer attended hidden state by the same process of scoring
-previous hidden states and all else as done in the encoder.
+By linearly transforming the concatination of the context vector and the current decoder hidden state, the intra-layer-attended hidden state is created. 
 
-Third, it uses the intra-layer-attended hidden state as the 'previous' hidden state to compute the hidden state of the 
-current time step. 
+The intra-layer-attended hidden state is chosen as the final hidden state of the current timestep.
 
->hidden_state = elu(output * wxh + intra-layer-attended_hidden_state * whh + Bias)
+By linearly transforming this hidden state a probability distribution for the output token is created. 
+The GloVe embedded word vector in the vocabulary, which represents the most probabilistic prediction for the output token
+becomes the decoder input for the next timestep.
 
-Finally, from some linear transformations we can find the output probability distribution for the current predicted word 
-and store the computed hidden state in the list of previous hidden states for computing the next hidden state in the next time step.
+And so the loop continues until all the output tokens are predicted. 
 
 # Is it any better?
 
