@@ -11,7 +11,7 @@ However, unlike the standard attention where the attention weights are computed 
 So, I implemented the same standard layer-wise attention mechanism function to calculate the attention weights for previous
 hidden states. This can be said to be <b>intra-layer attention</b>.
 
-Note: There may have been previous works on intra-layer-attention, but I didn't refer to any such work while making this implementation.
+<b>Note: There may have been previous works on intra-layer-attention, but I didn't refer to any such work while making this implementation. This is my personal implementation, and as such it may have differences from other works in the literature that goes by that uses 'intra attention', or something similar motivated by a similar concept. </b>
 
 # Intra-layer-attention for Encoder
 
