@@ -90,5 +90,5 @@ I haven't run this model for more than a couple of iterations.
 
 I haven't used any evaluation metric (like BLEU) either, because there's not much point in evaluating these low quality predictions. These are on my TO-DO list if I later find oppurtunity for proper training and testing.
 
-<b>Note to self:</b> Interesting paper, I recently discovered, dealing with related matters: https://arxiv.org/pdf/1705.04304.pdf
-
+Interesting paper, I recently discovered, dealing with related matters: https://arxiv.org/pdf/1705.04304.pdf
+The LSTMN model proposed in this paper (https://arxiv.org/pdf/1601.06733.pdf) that I recently discovered, is based on exactly similar intuitions which I had while building this model. 
