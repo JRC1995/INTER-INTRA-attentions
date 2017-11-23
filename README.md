@@ -6,7 +6,7 @@ This is a similar seq-2-seq model as [this](https://github.com/JRC1995/Abstracti
 The main difference is in the encoder and decoder units. This model is inspired from the idea of [recurrent residual attention](https://arxiv.org/abs/1709.03714). 
 
 The RRA model adds a weighted summation of K previous hidden states with the standard recurrent function. 
-However, unlike the standard attention where the attention weights are computed from the context by a scoring function, here (in the RRA model), the weights are randomly initialized.
+However, unlike the standard attention where the attention weights are computed from the context by a scoring function, in the RRA model, the weights are randomly initialized.
 
 So, I implemented the same standard layer-wise attention mechanism function to calculate the attention weights for previous
 hidden states. This can be said to be <b>intra-layer attention</b>.
@@ -37,7 +37,9 @@ This intra-decoder-layer attended hidden state is considered as the final hidden
 
 Finally, we store the computed hidden state in the list of previous hidden states for computing the next hidden state in the next time step.
 
-<b>Possible Improvement</b>: Slightly change (using some proper function) previous hidden states that were attended taking the current context into account. This is based on the intuition that while reading a text, previously read words can take on new meaning from context of the current words. Often we may look back previous words to make sense of the current word. That can be somewhat analogous to the intra-layer-attention - we attend to certain previous words in the text (or in our memory) to make sense of the current words. But, as we attend to previous words, the previous words can make more sense too, from the context of the present words. Which is why, updating previous hidden states based on current hidden states may be something to be explored (if not already explored). We already have bi-directional RNNs (which is what I used here, too) which are based on similar intuitions - that future contexts matter. But, this proposed improvement may eliminate the need for backward RNN, require less parameters (and computational power), and may learn to update only the relevant hidden state (previous context). However, I am unsure, if this truly will make too much of a difference.  
+<b>Possible Improvement</b>: Slightly change (using some proper function) previous hidden states that were attended taking the current context into account. This is based on the intuition that while reading a text, previously read words can take on new meaning from context of the current words. Often we may look back previous words to make sense of the current word. That can be somewhat analogous to the intra-layer-attention - we attend to certain previous words in the text (or in our memory) to make sense of the current words. But, as we attend to previous words, the previous words can make more sense too, from the context of the present words. Which is why, updating previous hidden states based on current hidden states may be something to be explored (if not already explored). We already have bi-directional RNNs (which is what I used here, too) which are based on similar intuitions - that future contexts matter. But, this proposed improvement may eliminate the need for backward RNN, and may learn to update only the relevant hidden state (previous context). Also this model may be better able to handle distant context. 
+
+However, I am unsure, if this truly will make too much of a difference.  
 
 # Intra-layer-attention for Decoder
 
@@ -61,7 +63,7 @@ And so the loop continues until all the output tokens are predicted.
 
 # Is it any better?
 
-Can't say. For now, I don't currently have access to much (computational) resource for training and testing this under a reasonable time.
+Can't say. I didn't have much computational resource when I developed the model. I may properly test it later. I will probably modify the model, and polish the code too. 
 
 Ultimately, this is pretty much a toy implementation, that will work only for batch_size = 1. No regularization is implemented either. 
 
