@@ -15,7 +15,7 @@ hidden states. This can be said to be <b>intra-layer attention</b>.
 
 # Intra-layer-attention for Encoder
 
-I used [global attention](https://nlp.stanford.edu/pubs/emnlp15_attn.pdf) for the basic attention mechanism. 
+I used [global attention](https://nlp.stanford.edu/pubs/emnlp15_attn.pdf) for the standard encoder-decoder interlayer attention mechanism. 
 
 At each time step of the encoder, a <i>candidate hidden state</i> is created by the standard RNN method (but with elu activation).
 
@@ -93,4 +93,6 @@ I haven't run this model for more than a couple of iterations.
 I haven't used any evaluation metric (like BLEU) either, because there's not much point in evaluating these low quality predictions. These are on my TO-DO list if I later find oppurtunity for proper training and testing.
 
 Interesting paper, I recently discovered, dealing with related matters: https://arxiv.org/pdf/1705.04304.pdf
-The LSTMN model proposed in this paper (https://arxiv.org/pdf/1601.06733.pdf) that I recently discovered, is based on exactly similar intuitions which I had while building this model. 
+The LSTMN model proposed in this paper (https://arxiv.org/pdf/1601.06733.pdf) that I recently discovered, is based on exactly similar intuitions which I had while building this model.
+
+I used valina RNN as a base for simplicity (and because with intra-layer attention, long range dependencies can be included even in an otherwise vanilla RNN), but LSTM or GRU is probably a better choice to avoid gradient vanishing\exploding. 
