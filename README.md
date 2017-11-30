@@ -71,6 +71,8 @@ I haven't run this model for more than a couple of iterations.
 
 I haven't used any evaluation metric (like BLEU) either, because there's not much point in evaluating these low quality predictions. These are on my TO-DO list if I later find oppurtunity for proper training and testing.
 
+I used valina RNN as a base for simplicity (and because with intra-layer attention, long range dependencies can be included even in an otherwise vanilla RNN), but LSTM or GRU is probably a better choice to avoid gradient vanishing\exploding. 
+
 #### Interesting paper ( which I recently discovered ) dealing with related matters: 
 
 [A Deep Reinforced Model For Abstractive Summarization - Romain Paulus, Caiming Xiong & Richard Socher](https://arxiv.org/pdf/1705.04304.pdf)
@@ -79,4 +81,3 @@ The LSTMN model proposed in the paper below, is based on exactly similar intuiti
 
 [Long Short-Term Memory-Networks for Machine Reading - Jianpeng Cheng, Li Dong and Mirella Lapata](https://arxiv.org/pdf/1601.06733.pdf) 
 
-I used valina RNN as a base for simplicity (and because with intra-layer attention, long range dependencies can be included even in an otherwise vanilla RNN), but LSTM or GRU is probably a better choice to avoid gradient vanishing\exploding. 
