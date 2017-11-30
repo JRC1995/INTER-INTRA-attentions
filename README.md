@@ -71,11 +71,11 @@ I haven't run this model for more than a couple of iterations.
 
 I haven't used any evaluation metric (like BLEU) either, because there's not much point in evaluating these low quality predictions. These are on my TO-DO list if I later find oppurtunity for proper training and testing.
 
-#### Interesting paper, I recently discovered, dealing with related matters: 
+#### Interesting paper ( which I recently discovered ) dealing with related matters: 
 
 [A Deep Reinforced Model For Abstractive Summarization - Romain Paulus, Caiming Xiong & Richard Socher](https://arxiv.org/pdf/1705.04304.pdf)
 
-The LSTMN model proposed in the paper(which I recently discovered) below, is based on exactly similar intuitions which I had while building this model: 
+The LSTMN model proposed in the paper below, is based on exactly similar intuitions which I had while building this model: 
 
 [Long Short-Term Memory-Networks for Machine Reading - Jianpeng Cheng, Li Dong and Mirella Lapata](https://arxiv.org/pdf/1601.06733.pdf) 
 
